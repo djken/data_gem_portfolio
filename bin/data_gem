@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require './lib/data_gem_portfolio'
+
+DataGemPortfolio::CLI.new.call
+
+
