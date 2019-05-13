@@ -23,10 +23,15 @@ class DataGemPortfolio::CLI
 
     while input != "exit"
       input = gets.strip.downcase
+      
         if input.to_i > 0 && input.to_i <= count_instance
           the_category = @courses[input.to_i - 1]
+          separator
           puts "- Item: #{the_category.name}"
           puts "- Price: #{the_category.price}"
+          puts "- Availability: #{the_category.availability}"
+          puts "- Url: #{the_category.url}"
+          separator
           puts " "
           info_item
         elsif input == "list"
@@ -41,5 +46,9 @@ class DataGemPortfolio::CLI
 
   def thanking
     puts "Thank you for visiting our site!!"
+  end
+
+  def separator 
+    puts "*" * 120
   end
 end
