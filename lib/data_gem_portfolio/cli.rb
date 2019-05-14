@@ -9,12 +9,13 @@ class DataGemPortfolio::CLI
     info_item
     puts "1. Batteries"
     puts "2. Inverters"
+    puts "3. Solar System"
 
     @courses = DataGemPortfolio::Category.today
   end
 
   def info_item
-    puts "Type 1 or 2 to see items, list to see the list or exit."
+    puts "Type 1, 2 or 3 to see items, list to see the list or exit."
   end
 
   def menu
@@ -23,23 +24,31 @@ class DataGemPortfolio::CLI
 
     while input != "exit"
       input = gets.strip.downcase
-      
+
         if input.to_i > 0 && input.to_i <= count_instance
           the_category = @courses[input.to_i - 1]
           separator
-          puts "- Item: #{the_category.name}"
-          puts "- Price: #{the_category.price}"
-          puts "- Availability: #{the_category.availability}"
-          puts "- Url: #{the_category.url}"
+          puts "* Item:"
+          puts " - #{the_category.name}"
+
+          puts "* Price:"
+          puts " - #{the_category.price}"
+
+          puts "* Availability:"
+          puts " - #{the_category.availability}"
+
+          puts "* Url:"
+          puts " - #{the_category.url}"
           separator
           puts " "
+
           info_item
         elsif input == "list"
           list_category
         elsif input == "exit"
           thanking
         else
-          puts "Not sure whay you want. Type 1 or 2 to see items, list to see the list or exit."
+          puts "Not sure whay you want. Type 1, 2 or 3 to see items, list to see the list or exit."
         end
       end
     end

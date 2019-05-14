@@ -1,3 +1,4 @@
+require 'pry'
 class DataGemPortfolio::Category
   attr_accessor :name, :price, :availability, :url
 
@@ -9,13 +10,14 @@ class DataGemPortfolio::Category
     all_items = []
     all_items << self.scrape_woot
     all_items << self.scrape_inverter
+    all_items << self.scrape_solar
     all_items
   end
 
   def self.batteries
     doc = Nokogiri::HTML(open("https://www.luminousindia.com/combo-deal/inverter-battery.html"))
   end
-  
+
   def self.scrape_woot
     battery_deal = self.new
     battery_deal.name = self.batteries.search("h2.product-name").first.inner_text
@@ -37,5 +39,16 @@ class DataGemPortfolio::Category
     inverter_deal
   end
   
+  def self.solar
+    doc = Nokogiri::HTML(open("https://www.wholesalesolar.com/specials/"))
+  end
+  def self.scrape_solar
+    solar_deal = self.new
+    solar_deal.name = self.solar.search(".prod-td").css(".product-row-link").first.text
+    solar_deal.price = self.solar.css(".price-group .price").first.text
+    solar_deal.url = self.solar.css(".product-row-link").css("a").first.attr("href")
+    solar_deal.availability = true
+    solar_deal
+  end
+  # binding.pry
 end
-
