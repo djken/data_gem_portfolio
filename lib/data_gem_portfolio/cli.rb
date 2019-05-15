@@ -48,7 +48,7 @@ class DataGemPortfolio::CLI
         elsif input == "exit"
           thanking
         else
-          puts "Not sure whay you want. Type 1, 2 or 3 to see items, list to see the list or exit."
+          puts "You type the wrong numberclear. Type 1, 2 or 3 to see items, list to see the list or exit."
         end
       end
     end
@@ -58,6 +58,6 @@ class DataGemPortfolio::CLI
   end
 
   def separator 
-    puts "*" * 120
+    puts "*" * 110
   end
 end
